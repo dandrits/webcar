@@ -1,0 +1,28 @@
+This repository helps you create a raspberry pi rc car which you control via web.
+
+The usrbin folder contains the car python script which is used to send commands to picoborg rev
+controller and the motors.
+The varwww folder contains the car php script which sends command to car python script.
+NOTE: your web server must have permissions to do that!!!
+Also the varwww folder contains a simple html page with some images in order to control the car
+
+INSTALLATION INSTRUCTIONS:
+Copy the usrbin's folder contents inside one of your PATH's folders.
+Copy the varwww's folder contents inside your web server's folder.
+Hit the raspberrry pi IP address on web browser and VOILA!
+
+ALSO:!
+Once you copy usrbin's folder contents inside one of your PATH's folders you can control
+the car via command line.
+ex:car -e ->turns the light on
+car -w ->moves the car forward
+
+
+Items needed:
+1)Raspberry pi connected on the network(preferrably wirelessly)
+2)Picoborg reverse motor controller connected on the raspberry (https://www.piborg.org/picoborgrev)
+3)At least 1 or 2 DC motors connected on the picoborg reverse
+4)Oprionally a led connected to pin No 11 on the raspberry
+5)A web browser!
+
+NJoy!
