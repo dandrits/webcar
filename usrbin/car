@@ -1,0 +1,49 @@
+#!/usr/bin/python
+import sys, getopt
+import RPi.GPIO as GPIO
+import PicoBorgRev
+import time
+
+ifile=''
+ofile=''
+
+PBR = PicoBorgRev.PicoBorgRev()     # Create a new PicoBorg Reverse object
+PBR.Init()                          # Set the board up (checks the board is con$
+PBR.ResetEpo()                      # Reset the stop switch (EPO) state
+                                    # if you do not have a switch across the tw$
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7,GPIO.OUT) 
+###############################
+# o == option
+# a == argument passed to the o
+###############################
+
+try:
+    myopts, args = getopt.getopt(sys.argv[1:],"qwerasd")
+except getopt.GetoptError as e:
+    print (str(e))
+    sys.exit(2)
+ 
+for o, a in myopts:
+    if o == '-q':
+        PBR.MotorsOff()
+        GPIO.output(7,False)
+        GPIO.cleanup()
+        sys.exit()
+    elif o == '-w':
+       PBR.SetMotor1(-1)
+       PBR.SetMotor2(-1)
+    elif o == '-e':
+	GPIO.output(7,True)
+    elif o == '-r':
+	GPIO.output(7,False)
+    elif o == '-a':
+	PBR.SetMotor1(-1)
+        PBR.SetMotor2(0)
+    elif o == '-s':
+	PBR.SetMotor1(1)
+        PBR.SetMotor2(1)
+    elif o == '-d':
+	PBR.SetMotor1(0)
+        PBR.SetMotor2(-1)
